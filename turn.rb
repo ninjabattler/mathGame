@@ -7,31 +7,31 @@ class Turn
   end
 
   def next_turn
-    puts ""
-    puts "#{@p1.name} [#{@p1.lives}/3] vs #{@p2.name} [#{@p2.lives}/3]"
+    puts "|"
+    puts "|#{@p1.name} [#{@p1.lives}/3] vs #{@p2.name} [#{@p2.lives}/3]"
     question = Question.new(@current)
     if question.check_answer
-      puts "Nice going"
+      puts "|(√) Nice going"
     else 
-      puts "Wrong answer, the answer was #{question.correct}, and now you've lost a life"
+      puts "|(X) Wrong answer, the answer was #{question.correct}, and now you've lost a life"
       @current.lives -= 1
     end
-    puts ""
+    puts "|"
     self.change_player
     self.check_lives
   end
 
   def check_lives
     if @p1.lives == 0
-      puts "-----Game Over-----"
-      puts "#{@p1.name} has lost thy noble life. #{@p2.name} is the victor. The game is over"
-      puts ""
+      puts "|-----Game Over-----"
+      puts "|"
+      puts "|#{@p1.name} has lost thy noble life. #{@p2.name} is the victor with a score of #{@p2.lives}/3. The game is over"
     elsif @p2.lives == 0
-      puts "-----Game Over-----"
-      puts "#{@p2.name} has lost thy noble life. #{@p1.name} is the victor. The game is over"
-      puts ""
+      puts "|-----Game Over-----"
+      puts "|"
+      puts "|#{@p2.name} has lost thy noble life. #{@p1.name} is the victor with a score of #{@p1.lives}/3. The game is over"
     else
-      puts "-----NEXT TURN-----"
+      puts "|-----NEXT TURN-----"
       self.next_turn
     end
   end
